@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+    <title>Замыкалити</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <pre>
+        /*
+        Пример из задания, на выходе дает десять десяток через одну секунду.
+        Ожидается получить последовательность от 0 до 9 черзе секунду.
+        */
+        for (var i = 0; i < 10; i++) {
+            setTimeout(function(){
+                console.log(i);
+            }, 1000);
+        }
+
+        /*
+        Решение с помощью замыкания:
+        создаем анонимную функцию,
+        вызываем с необходимым аргументом,
+        возвращаем другую функцию в setTimeout для вызова в будущем,
+        эта функция является замыканием, содержащим необходимое значение.
+        */
+        for (var i = 0; i < 10; i++) {
+            setTimeout((function(i){
+                return function() {
+                    console.log(i);
+                };
+            })(i), 1000);
+        }
+
+        /*
+        Получаем аналогичный результат, запуская цикл через секунду :)
+        */
+        setTimeout(function(){
+            for (var i = 0; i < 10; i++) {
+                console.log(i);
+            }
+        }, 1000);
+
+
+
+        /*
+        Создаем новую функцию-замыкание с помощью биндинга.
+        Может быть плохим решением, если в контекст должен определяться при вызове.
+        */
+        for (var i = 0; i < 10; i++) {
+            setTimeout(function(i){
+                console.log(i);
+            }.bind(null, i), 1000);
+        }
+    </pre>
+    <a href onclick="first(); event.preventDefault();">Вызов первого примера</a>
+    <a href onclick="second(); event.preventDefault();">Вызов второго примера</a>
+    <a href onclick="third(); event.preventDefault();">Вызов третьего примера</a>
+    <a href onclick="fourth(); event.preventDefault();">Вызов четвертого примера</a>
+    <script src="1.2.js"></script>
+</body>
