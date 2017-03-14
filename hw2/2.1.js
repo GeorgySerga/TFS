@@ -2,18 +2,18 @@ function convert() {
     var numberToConvert = Number(prompt('Enter the number'));
     isBrokenNumber(numberToConvert) ?
             alert('Wrong number, try one more time') :
-            alert(decimalToBinary(numberToConvert, ''));
+            alert(Number(decimalToBinary(numberToConvert)));
 
     function isBrokenNumber(n) {
         return isNaN(n) || !isFinite(n) || n < 0 || !Number.isInteger(n);
     }
 
-    function decimalToBinary(decimal, binary) {
+    function decimalToBinary(decimal) {
         if (decimal > 0) {
             var remainder = decimal % 2;
-            decimalToBinary(Math.floor(decimal / 2), remainder + binary);
+            return decimalToBinary(Math.floor(decimal / 2)) + remainder;
         } else {
-            return binary ? binary : 0;
+            return '0';
         }
     }
 }
