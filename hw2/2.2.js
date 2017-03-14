@@ -10,14 +10,7 @@ for (var i = 0; i < firstArray.length; i++) {
 // O(n)
 for (var i = 0; i < secondArray.length; i++) {
     if (duplicateObject[secondArray[i]]) {
-        duplicateObject[secondArray[i]] = 2;
-    }
-}
-
-// O(n)
-for (var number in duplicateObject) {
-    if (duplicateObject[number] === 2) {
-        collisions.push(number);
+        collisions.push(secondArray[i]);
     }
 }
 
